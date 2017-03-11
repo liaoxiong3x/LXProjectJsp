@@ -58,11 +58,14 @@ public class AdminDaoImpl implements AdminDao{
 		Date date = null;
 		String datestr = "2012/12/12";
 		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+		
+		new java.sql.Date(format.parse(datestr).getTime());
 //		format.format(date);
 		System.out.println(format.parse(datestr));
-//		date=format.;
+		System.out.println(new java.sql.Date(format.parse(datestr).getTime()));
+//		new java.sql.Date(emp.getHiredate().getTime()),=format.;
 //		new java.sql.Date(emp.getHiredate().getTime());
-//		saveAdmin(new Admin("xiao", "xiao","xiao","adsd",Sex.female,11,date));
+		saveAdmin(new Admin("xiaoxiao", "xiao","xiao","adsd",Sex.female,11,format.parse(datestr)));
 	}
 	@Override
 	public int saveAdmin(Admin admin) {
@@ -89,8 +92,8 @@ public class AdminDaoImpl implements AdminDao{
 			}
 			ps.setInt(5, admin.getAge());
 			ps.setString(6, admin.getEmal());
-			ps.setString(7, "");
-			ps.setDate(8, null);
+			ps.setString(7, String.valueOf(admin.getHobby()));
+			ps.setDate(8, new java.sql.Date(admin.getBirthday().getTime()));
 			flag = ps.executeUpdate();
 		} catch (SQLException e) {
 //			e.
